@@ -19,7 +19,18 @@ function moveGameObjects(objectList) {
 }
 
 function handleProjectileCollisions() {
-  // TODO 8: Handle collisions between projectiles and enemies
+  // Recorre todos los proyectiles
+  for (let p = 0; p < projectiles.length; p++) {
+    const projectile = projectiles[p];
+    // Recorre todos los objetos del juego
+    for (let g = 0; g < gameObjects.length; g++) {
+      const gameObject = gameObjects[g];
+      // Solo colisiona si el objeto tiene hp positivo
+      if (gameObject.hp > 0 && isCollidingWithProjectile(gameObject, projectile)) {
+        handleProjectileObjectCollision(p, g);
+      }
+    }
+  }
 }
 
 function handleHallebotGenericCollisions() {
